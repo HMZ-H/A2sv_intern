@@ -14,7 +14,7 @@ func average_calculator(student_info map[string]float64) float64 {
 }
 
 func display_info(student_name string, average float64, student_info map[string]float64) {
-	fmt.Printf("\n---------------CALCULATED RESULT FOR %v----------------\n\n",student_name)
+	fmt.Printf("CALCULATED RESULT FOR %v",student_name)
 	for k, v := range student_info {
 		if k == "total"{
 			continue
@@ -24,12 +24,12 @@ func display_info(student_name string, average float64, student_info map[string]
 	fmt.Printf("%v : %0.2f\n","Total",student_info["total"])
 
 	fmt.Printf("%v : %0.3f\n","Average",average)
-	fmt.Println("\n---------------THANKS----------------\n")
+	fmt.Println("THANKS")
 
 }
 
 func accept_info() (string,map[string]float64){
-	fmt.Println("---------------WELCOME TO AVERAGE CALCULATOR----------------")
+	fmt.Println("WELCOME TO AVERAGE CALCULATOR0")
 	name:=""
 	fmt.Print("Please enter your name: ")
 	fmt.Scan(&name)
@@ -61,26 +61,7 @@ func main() {
 }
 
 
-/*
-		Test Cases
 
-Test Case 1: Normal Case
-
-studentInfo1 := map[string]float64{
-  "Math":    85,
-  "English": 90,
-  "Science": 95,
-}
-
-expectedAverage1 := 90.0 // (85 + 90 + 95) / 3
-
-Test Case 2: Single Subject
-
-studentInfo2 := map[string]float64{
-  "Math": 100,
-}
-
-expectedAverage2 := 100.0 // 100 / 1
 
 Test Case 3: No Subjects
 
@@ -88,4 +69,3 @@ studentInfo3 := map[string]float64{}
 
 expectedAverage3 := 0.0 // Sum is 0 and there are no subjects
 
-*/
