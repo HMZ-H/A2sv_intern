@@ -2,31 +2,28 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/mohaali/a2sv-backend-learning-path/task-2/pkg"
+	"strings"
+	"unicode"
 )
 
-func main() {
-	fmt.Println("                              Palindrome Check ✅/🚫")
-	fmt.Println("⚠⚠This checker is case-insensitive, ignores spaces and ignores punctuation marks.⚠⚠")
-	fmt.Println()
-	fmt.Println()
-	fmt.Printf("Enter your word: ")
-	str := pkg.StringInput()
-	fmt.Println()
-
-	palindrome := pkg.PalindromeCheck(str)
-
-	fmt.Println()
-	fmt.Println()
-	fmt.Printf("Your word is ")
-	if palindrome {
-		fmt.Printf("a palindrome ✅.")
-	} else {
-		fmt.Printf("not a palindrome 🚫.")
-
+func isPalindrome(input string) bool {
+	var sanitized []rune
+	for _, r := range input {
+		if unicode.IsLetter(r) || unicode.IsNumber(r) {
+			sanitized = append(sanitized, unicode.ToLower(r))
+		}
 	}
-	fmt.Println()
-	fmt.Println()
 
+	n := len(sanitized)
+	for i := 0; i < n/2; i++ {
+		if sanitized[i] != sanitized[n-1-i] {
+			return false
+		}
+	}
+	return true
+}
+
+func main() {
+	input := "A man, a plan, a canal, Panama"
+	fmt.Println(isPalindrome(input)) // Output: true
 }
