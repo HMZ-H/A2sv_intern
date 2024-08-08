@@ -2,27 +2,26 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/mohaali/a2sv-backend-learning-path/task-2/pkg"
+	"strings"
+	"unicode"
 )
 
-func main() {
-	fmt.Println("                              Word Counter ⏱")
-	fmt.Println("⚠⚠This counter is case-insensitive and ignores punctuation marks.⚠⚠")
-	fmt.Println()
-	fmt.Println()
-	fmt.Printf("Enter your sentence: ")
-	str := pkg.StringInput()
-	fmt.Println()
-	counter := pkg.CountWords(str)
-
-	fmt.Println()
-	fmt.Println("Word     Count")
-	fmt.Println()
-	for word, count := range counter {
-		fmt.Printf("%-5v .......... %v\n", word, count)
+func wordFrequencyCount(input string) map[string]int {
+	wordCount := make(map[string]int)
+	words := strings.FieldsFunc(input, func(c rune) bool {
+		return !unicode.IsLetter(c) && !unicode.IsNumber(c)
+	})
+	
+	for _, word := range words {
+		word = strings.ToLower(word)
+		wordCount[word]++
 	}
-	fmt.Println()
-	fmt.Println()
+	
+	return wordCount
+}
 
+func main() {
+	input := "Hello, hello! How are you? You are learning Go, Go is great."
+	frequency := wordFrequencyCount(input)
+	fmt.Println(frequency)
 }
